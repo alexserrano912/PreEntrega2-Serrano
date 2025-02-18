@@ -1,18 +1,38 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importar Bootstrap
+
 // Componente NavBar que renderiza la barra de menú
 function NavBar() {
-return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', backgroundColor: '#1a1a1a', color: 'white', alignItems: 'center' }}>
-    <h1 style={{ fontFamily: 'Arial Black, sans-serif' }}>Metal Merch</h1>
-    <ul style={{ listStyle: 'none', display: 'flex', gap: '20px', margin: 0, padding: 0 }}>
-        <li><a href="#heavymetal" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Heavy Metal</a></li>
-        <li><a href="#glammetal" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Glam Metal</a></li>
-        <li><a href="#thrashmetal" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>Thrash Metal</a></li>
-    </ul>
-    <CartWidget />
-    </nav>
-);
+    return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid">
+                {/* Logo de la tienda */}
+                <Link className="navbar-brand" to="/">
+                    <img src="https://i.gifer.com/TGkt.gif" alt="Metal Merch Logo" width="30" height="30" className="d-inline-block align-top" />
+                    Metal Merch
+                </Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/category/heavymetal">Heavy Metal</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/category/glammetal">Glam Metal</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/category/thrashmetal">Thrash Metal</Link>
+                        </li>
+                    </ul>
+                    <CartWidget />
+                </div>
+            </div>
+        </nav>
+    );
 }
 
 export default NavBar;
