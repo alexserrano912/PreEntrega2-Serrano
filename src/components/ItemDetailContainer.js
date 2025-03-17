@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
+import ItemDetail from './ItemDetail';
 
 // Componente ItemDetailContainer que muestra el detalle de un producto
 function ItemDetailContainer() {
@@ -7,11 +10,15 @@ function ItemDetailContainer() {
     const [item, setItem] = useState(null);
 
     useEffect(() => {
-        // Simulación de una llamada a una API para obtener el detalle del producto
         const fetchItem = async () => {
-            const response = await fetch(`/api/items/${itemId}`);
-            const data = await response.json();
-            setItem(data);
+            const docRef = doc(db, 'items', itemId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setItem({ id: docSnap.id, ...docSnap.data() });
+            } else {
+                console.log('No such document!');
+            }
         };
 
         fetchItem();
@@ -22,11 +29,7 @@ function ItemDetailContainer() {
     }
 
     return (
-        <div className="container mt-5">
-            <h2>{item.name}</h2>
-            <p>{item.description}</p>
-            <p>Precio: ${item.price}</p>
-        </div>
+        <ItemDetail item={item} />
     );
 }
 

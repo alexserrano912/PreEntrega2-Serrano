@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Componente Item que muestra un producto en el catálogo
-function Item({ id, name, description, price, image }) {
+const Item = React.memo(({ id, name, description, price, image }) => {
     return (
         <div className="card h-100">
             <img src={image} className="card-img-top" alt={name} style={{ height: '200px', objectFit: 'cover' }} />
@@ -14,6 +14,6 @@ function Item({ id, name, description, price, image }) {
             </div>
         </div>
     );
-}
+});
 
 export default Item;

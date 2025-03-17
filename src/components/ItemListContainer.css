@@ -1,0 +1,11 @@
+/* Estilos personalizados para ItemListContainer */
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.banner img {
+    max-height: 300px;
+    width: auto;
+    object-fit: cover;
+}

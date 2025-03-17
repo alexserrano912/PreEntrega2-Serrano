@@ -1,11 +1,12 @@
 import React from 'react';
-// Componente CartWidget que muestra un ícono de carrito y una notificación con un número fijo
+import { Link } from 'react-router-dom';
+
+// Componente CartWidget que muestra el icono del carrito de compras
 function CartWidget() {
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span role="img" aria-label="carrito" style={{ fontSize: '1.5rem' }}>🛒</span>
-            <span style={{ backgroundColor: '#ff0000', color: 'white', borderRadius: '50%', padding: '5px 10px', fontSize: '1rem' }}>3</span>
-        </div>
+        <Link to="/cart" className="btn btn-outline-light">
+            <i className="fas fa-shopping-cart"></i>
+        </Link>
     );
 }
 
